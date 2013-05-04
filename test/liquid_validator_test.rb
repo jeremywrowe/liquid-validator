@@ -1,6 +1,6 @@
 require 'minitest/spec'
 require 'minitest/autorun'
-require_relative '../lib/liquid_validator'
+require_relative '../lib/liquid-validator'
 
 describe LiquidValidator::Validator do
   describe "#valid?" do
