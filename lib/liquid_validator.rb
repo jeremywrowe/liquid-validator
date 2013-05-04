@@ -1,26 +1,22 @@
-require 'liquid'
+require 'liquid' unless defined?(::Liquid)
 class LiquidValidator
   def initialize(template)
-    @template =  template
-    @errors   = Array.new
-  end
-
-  def valid?
+    @template = template
+    @errors   = []
+    @is_valid = false
     run_validations_on_template
   end
 
-  def errors
-    run_validations_on_template
-    @errors
-  end
+  def valid?; @is_valid; end
+  def errors; @errors;   end
 
   private
   def run_validations_on_template
-    @valid ||= begin
-      Liquid::Template.parse(@template).is_a?(Liquid::Template)
-    rescue Liquid::SyntaxError => e
+    begin
+      Liquid::Template.parse(@template)
+      @is_valid = true
+    rescue Exception => e
       @errors << e
-      false
     end
   end
 end
