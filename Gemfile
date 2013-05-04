@@ -1,3 +1,2 @@
-# A sample Gemfile
-source "https://rubygems.org"
-gem "liquid"
+source 'https://rubygems.org'
+gemspec

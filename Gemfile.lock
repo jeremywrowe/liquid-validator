@@ -1,10 +1,19 @@
+PATH
+  remote: .
+  specs:
+    liquid-validator (1.0.0)
+      liquid (>= 2.4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     liquid (2.5.0)
+    rake (10.0.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  liquid
+  bundler (~> 1.3)
+  liquid-validator!
+  rake
