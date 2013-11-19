@@ -24,17 +24,17 @@ Or install it yourself as:
 
 ```ruby
 good_tmpl = "Your name is {{name}}"
-validator = LiquidValidator::Validate.new(good_tmpl)
+validator = LiquidValidator::Validator.new(good_tmpl)
 validator.valid? # true
 validator.errors # []
 
 bad_tmpl  = "Your name is {{name"
-validator = LiquidValidator::Validate.new(bad_tmpl)
+validator = LiquidValidator::Validator.new(bad_tmpl)
 validator.valid? # false
 validator.errors # ["Syntax Error: ..."] (Array of strings)
 ```
 
-*Note* - That in ```LiquidValidator::Validate.new(tmpl)``` tmpl is a string.
+*Note* - That in ```LiquidValidator::Validator.new(tmpl)``` tmpl is a string.
 
 ## Contributing
 
