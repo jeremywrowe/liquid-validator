@@ -1,5 +1,4 @@
-require 'minitest/spec'
-require 'minitest/autorun'
+require 'test_helper'
 require_relative '../lib/liquid-validator'
 
 describe LiquidValidator::Validator do
@@ -10,16 +9,29 @@ describe LiquidValidator::Validator do
           HAPPY DAY
         {% endif %}
       TEMPLATE
+
       LiquidValidator::Validator.new(template).valid?.must_equal true
     end
 
-    it "returns false for invalid templates" do
+    it "returns false for a template missing a conditional tag" do
       template = <<-TEMPLATE
         {% if something
           HAPPY DAY
         {% endif %}
       TEMPLATE
+
       LiquidValidator::Validator.new(template).valid?.must_equal false
+    end
+
+    it "returns false for a template missing ending of a template variable" do
+      skip "This only applies to liquid v3+" unless Gem.loaded_specs['liquid'].version.release >= Gem::Version.create('3')
+      another_template = <<-TEMPLATE
+        <p>
+          {{name </p><p> {{description }}
+        </p>
+      TEMPLATE
+
+      LiquidValidator::Validator.new(another_template).valid?.must_equal false
     end
   end
 
@@ -30,6 +42,7 @@ describe LiquidValidator::Validator do
           HAPPY DAY
         {% endif %}
       TEMPLATE
+
       LiquidValidator::Validator.new(template).errors.must_equal []
     end
 
@@ -39,8 +52,9 @@ describe LiquidValidator::Validator do
           HAPPY DAY
         {% endif %}
       TEMPLATE
-      LiquidValidator::Validator.new(template).errors.must_equal ["Tag '{%' was not properly terminated with regexp: /\\%\\}/ "]
+
+      LiquidValidator::Validator.new(template).errors.first
+        .must_match(/Tag '{%' was not properly|Liquid syntax error/)
     end
   end
 end
-

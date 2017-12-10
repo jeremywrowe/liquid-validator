@@ -34,6 +34,21 @@ validator.valid? # false
 validator.errors # ["Syntax Error: ..."] (Array of strings)
 ```
 
+If you're using liquid version 3 and greater you can adjust the strictness of template validation.
+The default is `:strict` which is the suggested level. The levels match [error-modes](https://github.com/Shopify/liquid#error-modes). You can adjust the error mode via:
+
+```ruby
+good_tmpl = "Your name is {{name}}"
+validator = LiquidValidator::Validator.new(good_tmpl, error_mode: :lax)
+validator.valid? # true
+validator.errors # []
+
+bad_tmpl  = "Your name is {{name"
+validator = LiquidValidator::Validator.new(bad_tmpl, error_mode: :lax)
+validator.valid? # true
+validator.errors # []
+```
+
 *Note* - That in ```LiquidValidator::Validator.new(tmpl)``` tmpl is a string.
 
 ## Contributing

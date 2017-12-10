@@ -1,7 +1,7 @@
 PATH
-  remote: .
+  remote: ..
   specs:
-    liquid-validator (1.0.1)
+    liquid-validator (1.0.0)
       liquid (>= 2.4.0)
 
 GEM
@@ -43,6 +43,7 @@ PLATFORMS
 DEPENDENCIES
   appraisal
   bundler (~> 1.16.0)
+  liquid (= 4.0.0)
   liquid-validator!
   minitest
   pry
