@@ -1,7 +1,7 @@
 PATH
   remote: ..
   specs:
-    liquid-validator (1.0.0)
+    liquid-validator (1.0.1)
       liquid (>= 2.4.0)
 
 GEM
