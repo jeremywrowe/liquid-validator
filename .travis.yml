@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.3
+  - 2.4
+  - 2.5
+script: "bundle exec rake test"
+gemfile:
+  - gemfiles/liquid_2_5.gemfile
+  - gemfiles/liquid_2_6.gemfile
+  - gemfiles/liquid_3.gemfile
+  - gemfiles/liquid_4.gemfile
+

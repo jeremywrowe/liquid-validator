@@ -1,4 +1,8 @@
-appraise "liquid-2" do
+appraise "liquid-2-5" do
+  gem "liquid", "2.5.5"
+end
+
+appraise "liquid-2-6" do
   gem "liquid", "2.6.3"
 end
 
